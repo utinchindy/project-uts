@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Kategori;
-use App\Models\Produk;
+use App\Models\Artikel;
 
 /**
  * 
@@ -13,7 +13,7 @@ class KategoriController extends Controller
 	
 	function index()
 	{
-		$data['list_kategori'] = Kategori::withCount('produk')->get();
+		$data['list_kategori'] = Kategori::withCount('artikel')->get();
 		return view('admin/kategori/index', $data);
 	}
 	
@@ -33,6 +33,7 @@ class KategoriController extends Controller
 	
 	function show(Kategori $kategori)
 	{
+		$data['list_artikel'] = $kategori->artikel;
 		$data['kategori'] = $kategori;
 		return view('admin/kategori/show', $data);
 	}

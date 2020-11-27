@@ -22,7 +22,9 @@ class ArtikelController extends Controller
 	
 	function create()
 	{
-		return view('admin/artikel/create');
+		$user = request()->user();
+		$data['penulis'] = $user;
+		return view('admin/artikel/create', $data);
 	}
 	
 	function store()
@@ -33,6 +35,7 @@ class ArtikelController extends Controller
 		$artikel->penulis = request('penulis');
 		$artikel->tanggal = request('tanggal');
 		$artikel->isi = request('isi');
+		$artikel->id_kategori = request('id_kategori');
 		$artikel->save();
 
 		return redirect('admin/artikel')->with('success', 'Data Berhasil di Tambahkan');
@@ -40,25 +43,27 @@ class ArtikelController extends Controller
 	
 	function show(Artikel $artikel)
 	{
-		$data['artikel'] = $produk;
+		$data['artikel'] = $artikel;
 		return view('admin/artikel/show', $data);
 	}
 	
 	function edit(Artikel $artikel)
 	{
-		$data['artikel'] = $produk;
+		$user = request()->user();
+		$data['list_artikel'] = $user->artikel;
+		$data['artikel'] = $artikel;
 		return view('admin/artikel/edit', $data);
 		
 	}
 	
 	function update(Artikel $artikel)
 	{
-		$artikel->brand = request('brand');
-		$artikel->nama = request('nama');
-		$artikel->harga = request('harga');
-		$artikel->stok = request('stok');
+		
+		$artikel->judul = request('judul');
+		$artikel->penulis = request('penulis');
+		$artikel->tanggal = request('tanggal');
+		$artikel->isi = request('isi');
 		$artikel->id_kategori = request('id_kategori');
-		$artikel->deskripsi = request('deskripsi');
 		$artikel->save();
 
 		return redirect('admin/artikel')->with('success', 'Data Berhasil di Update');
@@ -71,15 +76,15 @@ class ArtikelController extends Controller
 		return redirect('admin/artikel')->with('danger', 'Data Berhasil di Hapus');
 	}
 	function filter(){
-		$nama = request('nama');
-		$stok = explode(",", request('stok'));
-		$data['harga_min'] = $harga_min = request('harga_min');
-		$data['harga_max'] = $harga_max = request('harga_max');
-		// $data['list_artikel'] = Artikel::where('nama','like', "%$nama%")->get();
+		$judul = request('judul');
+		$penulis = request('penulis');
+		$data['tanggal_min'] = $tanggal_min = request('tanggal_min');
+		$data['tanggal_max'] = $tanggal_max = request('tanggal_max');
+		// $data['list_artikel'] = Artikel::where('judul','like', "%$judul%")->get();
 		//$data['list_artikel'] = Artikel::whereIn('stok', $stok)->get();
-		$data['list_artikel'] = Artikel::whereNotIn('stok', [0])->whereBetween('harga', [$harga_min, $harga_max])->where('nama','like', "%$nama%")->get();
-		$data['nama'] = $nama;
-		$data['stok'] = request('stok');
+		$data['list_artikel'] = Artikel::whereBetween('tanggal', [$tanggal_min, $tanggal_max])->where('judul','like', "%$judul%")->get();
+		$data['judul'] = $judul;
+		$data['penulis'] = request('penulis');
 		
 
 		return view('admin/artikel/index', $data);	

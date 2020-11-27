@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\ClientArtikel;
+use App\Models\User;
+use App\Models\Kategori;
 
 /**
  * 

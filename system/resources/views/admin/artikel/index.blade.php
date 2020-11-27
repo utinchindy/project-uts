@@ -10,27 +10,27 @@
 					Filter	
 				</div>
 				<div class="card-body">
-					<form action="{{url('admin/produk/filter')}}" method="post">
+					<form action="{{url('admin/artikel/filter')}}" method="post">
 						@csrf
 						<div class="form-group">
-							<label for="" class="control label">Nama</label>
-							<input type="text" class="form-control" name="nama" value="{{$nama ?? ''}}">
+							<label for="" class="control label">judul</label>
+							<input type="text" class="form-control" name="judul" value="{{$judul ?? ''}}">
 						</div>
 						<div class="form-group">
-							<label for="" class="control label">Stok</label>
-							<input type="text" class="form-control" name="stok" value="{{$stok ?? ''}}">
+							<label for="" class="control label">penulis</label>
+							<input type="text" class="form-control" name="penulis" value="{{$penulis ?? ''}}">
 						</div>
 				<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="" class="control label">Harga Min</label>
-								<input type="text" class="form-control" name="harga_min" value="{{$harga_min ?? ''}}">
+								<label for="" class="control label">Dari tanggal</label>
+								<input type="text" class="form-control" name="tanggal_min" value="{{$tanggal_min ?? ''}}">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="" class="control label">Harga Max</label>
-								<input type="text" class="form-control" name="harga_max" value="{{$harga_max ?? ''}}">
+								<label for="" class="control label">Ke tanggal</label>
+								<input type="text" class="form-control" name="tanggal_max" value="{{$tanggal_max ?? ''}}">
 							</div>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 								<th>Judul Artikel</th>
 								<th>Penulis Artikel</th>
 								<th>Tanggal Rilis</th>
-								<th>Isi Artikel</th>
+								<th>Kategori Artikel</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,9 +68,9 @@
 									</div>
 								</td>
 								<td>{{$artikel->judul}}</td>
-								<td>{{$artikel->penulis}}</td>
+								<td>{{$artikel->seller->nama}}</td>
 								<td>{{$artikel->tanggal}}</td>
-								<td>{{$artikel->isi}}</td>
+								<td>{{$artikel->kategori->nama}}</td>
 							</tr>
 							@endforeach
 						</tbody>

@@ -33,7 +33,7 @@
 									</div>
 								</td>
 								<td>{{$kategori->nama}}</td>
-								<td>{{$kategori->produk_count}}</td>
+								<td>{{$kategori->artikel_count}}</td>
 							</tr>
 							@endforeach
 						</tbody>

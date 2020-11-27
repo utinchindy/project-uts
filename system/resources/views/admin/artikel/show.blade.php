@@ -7,18 +7,17 @@
 		<div class="col-md-12 my-5">
 			<div class="card">
 				<div class="card-header">
-					Detail Produk
+					Detail Artikel
 				</div>
 				<div class="card-body">
 					<div class="jumbotron">
-					  <h1 class="display-5">{{$produk->nama}}</h1><hr>
-						Kategori : {{$produk->kategori->nama}}
-					  <p class="lead"><strong class="text-dark">Stok Tersedia <b>{{$produk->stok}}</b> | Harga Rp. {{number_format($produk->harga)}} </strong></p>
-					  Seller : {{$produk->seller->nama}}
+					  <h1 class="display-5">{{$artikel->judul}}</h1><hr>
+						Penulis : {{$artikel->seller->nama}}
+					  <p class="lead"><strong class="text-dark">Tanggal Rilis : <b>{{$artikel->tanggal}}</b></strong></p>
 					  <hr class="my-4">
-					  <p>Deskripsi Produk : <br>
-					  	{!! nl2br($produk->deskripsi) !!}</p>
-					  <a class="btn btn-success btn-sm" href="#" role="button">Masukkan Keranjang</a>
+					  <p>Isi artikel : <br>
+					  	{!! nl2br($artikel->isi) !!}</p>
+					  <a class="btn btn-success btn-sm" href="#" role="button">Learn More</a>
 					</div>
 				</div>
 			</div>

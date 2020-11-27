@@ -15,16 +15,16 @@
 					    <tr>
 					      <th scope="col">No</th>
 					      <th scope="col">Aksi</th>
-					      <th scope="col">Nama Produk</th>
-					      <th scope="col">Harga Produk</th>
-					      <th scope="col">Stok roduk</th>
+					      <th scope="col">Nama Artikel</th>
+					      <th scope="col">Penulis Artikel</th>
+					      <th scope="col">Tanggal Rilis</th>
 					    </tr>
 					  </thead>
 					  <tbody>
 					    <tr>
 					      <th scope="row">{{$kategori->id}}</th>
 					      <td>
-					      	<a href="{{url('admin/produk')}}" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i></a>
+					      	<a href="{{url('admin/artikel')}}" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i></a>
 					      </td>
 					      <td>{{$kategori->nama}}</td>
 					      <td>@mdo</td>
