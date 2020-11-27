@@ -29,14 +29,15 @@ class ClientArtikelController extends Controller
 	
 	function store(Artikel $artikel)
 	{
-		$data['artikel'] = $artikel;
-		$check = new ClientArtikel;
-		$check->nama = request('nama');
-		$check->harga = request('harga');
-		$check->jumlah = request('jumlah');
-		$check->save();
+		
+		$komentar = new ClientArtikel;
+		$komentar->id_artikel = $artikel->id;
+		$komentar->nama = request('nama');
+		$komentar->email = request('email');
+		$komentar->isi = request('isi');
+		$komentar->save();
 
-		return redirect('/')->with('success', 'Barang Berhasil di Masukan ke Keranjang');
+		return redirect('/')->with('success', 'Berhasil menambahkan komentar');
 	}
 	
 	function show(Artikel $artikel)

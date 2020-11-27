@@ -80,7 +80,7 @@
                     <h4 class="text-white ">Masukkan Komentar</h4>
                         <p class="large text-muted ">
                         <div class="card bg-dark ">
-                            <form action="{{url('komentar', $artikel->id)}}" method="post">
+                            <form action="{{url('baca', $artikel->id)}}" method="post" onsubmit="return confirm('Komentar anda tidak dapat di ubah lagi saat menekan tombol submit. Lanjutkan ?');">
                                 @csrf
                               <div class="form-row align-items-center">
                                 <div class="col-4">
