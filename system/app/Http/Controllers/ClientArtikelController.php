@@ -71,18 +71,18 @@ class ClientArtikelController extends Controller
 	}
 
 	function filter(){
-		$nama = request('nama');
-		$stok = explode(",", request('stok'));
-		$data['harga_min'] = $harga_min = request('harga_min');
-		$data['harga_max'] = $harga_max = request('harga_max');
-		// $data['list_artikel'] = artikel::where('nama','like', "%$nama%")->get();
-		//$data['list_artikel'] = artikel::whereIn('stok', $stok)->get();
-		$data['list_artikel'] = Artikel::whereNotIn('stok', [0])->whereIn('stok', $stok)->whereBetween('harga', [$harga_min, $harga_max])->where('nama','like', "%$nama%")->get();
-		$data['nama'] = $nama;
-		$data['stok'] = request('stok');
+		$judul = request('judul');
+		$penulis = request('penulis');
+		$data['tanggal_min'] = $tanggal_min = request('tanggal_min');
+		$data['tanggal_max'] = $tanggal_max = request('tanggal_max');
+		// $data['list_artikel'] = Artikel::where('judul','like', "%$judul%")->get();
+		//$data['list_artikel'] = Artikel::whereIn('stok', $stok)->get();
+		$data['list_artikel'] = Artikel::whereBetween('tanggal', [$tanggal_min, $tanggal_max])->where('judul','like', "%$judul%")->get();
+		$data['judul'] = $judul;
+		$data['penulis'] = request('penulis');
 		
 
-		return view('user/index', $data);	
+		return view('admin/artikel/index', $data);	
 	}
 
 }
