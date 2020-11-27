@@ -14,7 +14,7 @@ class UserController extends Controller
 	
 	function index()
 	{
-		$data['list_user'] = User::withCount('produk')->get();
+		$data['list_user'] = User::withCount('artikel')->get();
 		return view('admin/user/index', $data);
 	}
 	

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Nov 2020 pada 16.19
+-- Waktu pembuatan: 27 Nov 2020 pada 11.33
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.3.21
 
@@ -18,8 +18,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project-7`
+-- Database: `project_uts`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `artikel`
+--
+
+CREATE TABLE `artikel` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `judul` varchar(255) DEFAULT NULL,
+  `penulis` varchar(255) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `isi` text DEFAULT NULL,
+  `id_kategori` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `artikel`
+--
+
+INSERT INTO `artikel` (`id`, `id_user`, `judul`, `penulis`, `tanggal`, `isi`, `id_kategori`, `created_at`, `updated_at`) VALUES
+(2, 1, 'React Loader Spinner', 'Utin Chindy', '2020-11-24', 'Semua orang tidak suka menunggu bukan? Yap, betul sekali. Menunggu itu membosankan atau user bisa mengira jika web Anda tidak merespon. User masa sekarang mengharapkan situs web yang cepat sebagai hal yang biasa. Jika aplikasi kalian berat atau lambat, tampilkan salah satu animasi loading modern ini saat konten Anda dimuat. Selain meningkatkan estetika aplikasi Anda, ini juga akan membantu mempertahankan user agar tidak langsung menutup laman web.', 2, '2020-11-24 02:39:10', '2020-11-24 02:43:13'),
+(3, 2, 'Pengaruh Budaya Nusantara terhadap sastra', 'selvira', '2020-11-27', 'Ketika berbicara mengenai budaya, kita harus mau membuka pikiran untuk menerima banyak hal baru. Budaya bersifat kompleks, luas, dan abstrak. Budaya tidak terbatas pada seni yang sering kali dilihat dalam gedung kesenian atau tempat bersejarah, seperti museum. Tetapi, budaya merupakan suatu pola hidup menyeluruh. Budaya memunyai banyak aspek yang turut menentukan perilaku komunikatif. Beberapa orang bisa mengalami kesulitan ketika berkomunikasi dengan orang dari budaya lain. Hal ini dikarenakan budaya memunyai keistimewaannya sendiri. Budaya masyarakat satu berbeda dengan budaya masyarakat yang lainnya, sehingga seseorang harus bisa menyesuaikan perbedaan-perbedaannya. Kebudayaan memengaruhi tingkat pengetahuan dan meliputi sistem ide atau gagasan yang terdapat dalam pikiran manusia, sehingga dalam kehidupan sehari-hari, kebudayaan itu bersifat abstrak.\r\n\r\nAda banyak unsur yang membentuk budaya, termasuk bahasa, adat istiadat, sistem agama dan politik, perkakas, pakaian, dan karya seni. Bahasa merupakan perwujudan budaya yang digunakan manusia untuk saling berkomunikasi, baik melalui tulisan, lisan, ataupun gerakan. Sebagai perwujudan budaya, bahasa dapat berperan dalam dua hal:\r\n\r\n1. Sebagai alat untuk berekspresi, berkomunikasi, mengadakan integrasi, dan adaptasi sosial.\r\n\r\n2. Sebagai alat untuk mengadakan hubungan dalam pergaulan sehari-hari, mewujudkan seni (sastra), mempelajari naskah-naskah kuno, dan mengeksploitasi ilmu pengetahuan dan teknologi.', 1, '2020-11-27 03:30:50', '2020-11-27 03:30:50');
 
 -- --------------------------------------------------------
 
@@ -39,10 +65,10 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama`, `created_at`, `updated_at`) VALUES
-(1, 'Laptop', '2020-11-12 23:29:54', '2020-11-12 23:29:54'),
-(2, 'Handphone', '2020-11-12 23:30:52', '2020-11-12 23:30:52'),
-(3, 'Pakaian Pria', '2020-11-12 23:31:06', '2020-11-12 23:31:06'),
-(4, 'Pakaian Wanita', '2020-11-12 23:31:16', '2020-11-12 23:31:16');
+(1, 'Artikel Sasta', '2020-11-27 02:49:32', '2020-11-27 02:49:32'),
+(2, 'Artikel Programing', '2020-11-27 02:49:42', '2020-11-27 02:49:42'),
+(3, 'Artikel Tanaman', '2020-11-27 02:49:53', '2020-11-27 02:49:53'),
+(4, 'Artikel Otomotif', '2020-11-27 02:50:02', '2020-11-27 02:50:02');
 
 -- --------------------------------------------------------
 
@@ -69,32 +95,25 @@ INSERT INTO `keranjang` (`id`, `nama`, `harga`, `jumlah`, `created_at`, `updated
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Struktur dari tabel `komentar`
 --
 
-CREATE TABLE `produk` (
+CREATE TABLE `komentar` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `brand` varchar(225) NOT NULL,
+  `id_artikel` int(11) NOT NULL,
+  `email` varchar(225) NOT NULL,
   `nama` varchar(225) NOT NULL,
-  `harga` char(30) NOT NULL,
-  `stok` int(11) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `isi` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data untuk tabel `komentar`
 --
 
-INSERT INTO `produk` (`id`, `id_user`, `brand`, `nama`, `harga`, `stok`, `id_kategori`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Xiaomi', 'Poco X3 NFC 8/128 GB', '3700000', 10, 2, 'NETWORK Technology\r\nGSM / HSPA / LTE\r\nLAUNCH Announced 2020, September 07\r\nStatus Available. Released 2020, September 08\r\nBODY Dimensions 165.3 x 76.8 x 9.4 mm (6.51 x 3.02 x 0.37 in)\r\nWeight 215 g (7.58 oz)\r\nBuild Glass front (Gorilla Glass 5), aluminum frame, plastic back\r\nSIM Hybrid Dual SIM (Nano-SIM, dual stand-by)\r\nIP53 splash-proof\r\nDISPLAY Type IPS LCD, 120Hz, HDR10, 450 nits (typ)\r\nSize 6.67 inches, 107.4 cm2 (~84.6% screen-to-body ratio)\r\nResolution 1080 x 2400 pixels, 20:9 ratio (~395 ppi density)\r\nProtection Corning Gorilla Glass 5\r\nPLATFORM OS Android 10, MIUI 12\r\nChipset Qualcomm SM7150-AC Snapdragon 732G (8 nm)\r\nCPU Octa-core (2x2.3 GHz Kryo 470 Gold & 6x1.8 GHz Kryo 470 Silver)\r\nGPU Adreno 618\r\nMEMORY Card slot microSDXC (uses shared SIM slot)\r\nInternal 64GB 6GB RAM, 128GB 6GB RAM\r\nUFS 2.1\r\nMAIN CAMERA Quad 64 MP, f/1.9, (wide), 1/1.73\", 0.8µm, PDAF\r\n13 MP, f/2.2, 119˚ (ultrawide), 1.0µm\r\n2 MP, f/2.4, (macro)\r\n2 MP, f/2.4, (depth)\r\nFeatures Dual-LED flash, HDR, panorama\r\nVideo 4K@30fps, 1080p@30/120fps, 720p@960fps; gyro-EIS\r\nSELFIE CAMERA Single 20 MP, f/2.2, (wide), 1/3.4\", 0.8µm\r\nFeatures HDR, panorama\r\nVideo 1080p@30fps\r\nSOUND Loudspeaker Yes, with stereo speakers\r\n3.5mm jack Yes\r\n24-bit/192kHz audio\r\nCOMMS WLAN Wi-Fi 802.11 a/b/g/n/ac, dual-band, Wi-Fi Direct, hotspot\r\nBluetooth 5.1, A2DP, LE\r\nGPS Yes, with A-GPS, GLONASS, BDS\r\nNFC Yes\r\nInfrared port Yes\r\nRadio FM radio, recording\r\nUSB USB Type-C 2.0, USB On-The-Go\r\nFEATURES Sensors Fingerprint (side-mounted), accelerometer, gyro, proximity, compass\r\nBATTERY Type Li-Po 5160 mAh, non-removable\r\nCharging Fast charging 33W, 62% in 30 min, 100% in 65 min (advertised)', '2020-11-22 14:45:01', '2020-11-22 14:45:01'),
-(2, 1, 'Asus', 'LAPTOP GAMING ASUS P1410CDA RYZEN 3-3250U 8GB 256GB SSD W10', '8000000', 50, 1, '- Deskripsi Asus EXPERTBOOK P1410CDA-BV3421T Ryzen 3-3250U 8GB 256GB SSD W10 BLACK\r\n- Processor AMD Ryzen 3 - 3250U ( 2.6GHz Turbo maksimal 3.5GHz)\r\n- Chipset AMD\r\n- Grafis AMD Vega 3\r\n- Memori 8GB DDR4 2400MHz(bawaan ram 4) upgradeable to 16GB DDR4\r\n- Storage 256GB SSD PCIe NVMe M.2\r\n- Display 14 Inch HD LED Backlight\r\n- Fingerprint\r\n- Resolusi HD 1366 x 768 Pixel\r\n- Konektifitas WiFi, Bluetooth, Port USB, HDMI, Card Reader, Combo Audio Jack\r\n- 2 x 2W dual speaker stereo, ICEpower, SonicMaster Audio\r\n- Kamera Webcam dengan resolusi VGA\r\n- Baterai 2 Cell 32WHr\r\n- Sistem Operasi Microsoft Windows 10 Home original\r\n- Dimensions 325 x 216 x 22.9 mm\r\n- Berat 1.5 kg\r\n- Warna Black', '2020-11-22 14:45:26', '2020-11-22 14:45:26'),
-(3, 2, 'LLACES', 'Dress Wanita - Evelyn Flare Dress', '330000', 100, 4, 'Deskripsi LLACES Clothing - Dress Wanita - Evelyn Flare Dress - Merah, S\r\n- Midi dress desain flare sleeve detail pita ikat\r\n- Warna hitam& Merah\r\n- Kerah lapel\r\n- Unlined\r\n- Regular fit\r\n- Kancing depan\r\n- Material poliester tidak transparan, ringan dan tidak stretch\r\n- Tinggi model 175cm, mengenakan ukuran S\r\n\r\nLingkar Dada x Panjang Lengan x Panjang Badan:\r\n- S (86 cm x 18 cm x 97 cm)\r\n- M (88 cm x 19 cm x 98 cm)\r\n- L (90 cm x 20 cm x 99 cm)', '2020-11-22 14:45:29', '2020-11-22 14:45:29'),
-(5, 1, 'Buble', 'Buble wrap untuk produk', '1000', 1000, 1, 'Untuk pelindung barang anda', '2020-11-22 15:03:58', '2020-11-22 15:03:58'),
-(6, 1, 'Samsung', 'Galaxy A51 6/128 GB', '4500000', 10, 2, 'Garansi resmi sein indonesia / Samsung Indonesia', '2020-11-22 14:45:18', '2020-11-22 14:45:18');
+INSERT INTO `komentar` (`id`, `id_artikel`, `email`, `nama`, `isi`, `created_at`, `updated_at`) VALUES
+(1, 2, 'utijevi@gmail.com', 'Uti Jevi', 'Isi dari artikel sangat sedikit dan tidak lengkap. Tolong lengkapi lagi.', '2020-11-27 02:40:25', '2020-11-27 02:40:25');
 
 -- --------------------------------------------------------
 
@@ -148,6 +167,12 @@ INSERT INTO `user_detail` (`id`, `id_user`, `no_handphone`, `created_at`, `updat
 --
 
 --
+-- Indeks untuk tabel `artikel`
+--
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
@@ -160,9 +185,9 @@ ALTER TABLE `keranjang`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indeks untuk tabel `komentar`
 --
-ALTER TABLE `produk`
+ALTER TABLE `komentar`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -182,6 +207,12 @@ ALTER TABLE `user_detail`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `artikel`
+--
+ALTER TABLE `artikel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
@@ -194,10 +225,10 @@ ALTER TABLE `keranjang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT untuk tabel `komentar`
 --
-ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `komentar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

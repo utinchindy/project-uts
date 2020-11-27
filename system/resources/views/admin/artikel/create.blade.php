@@ -14,7 +14,7 @@
 						@csrf
 						<div class="form-group">
 							<label for="brand" class="control-label">Judul Artikel</label>
-							<input type="text" name="brand" id="judul" class="form-control">
+							<input type="text" name="judul" id="judul" class="form-control">
 						</div>
 						<div class="row">
 						    <div class="col">
@@ -23,7 +23,7 @@
 						    </div>
 						    <div class="col">
 						    	<label for="stok" class="control-label">Tanggal Rilis</label>
-						      <input type="text" class="form-control" name="tanggal" id="tanggal">
+						      <input type="date" class="form-control" name="tanggal" id="tanggal">
 						    </div>
 						</div>
 						<div class="form-group mt-3">

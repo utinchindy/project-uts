@@ -52,8 +52,8 @@
                               </div>
                               <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                  <p style="font-size: 16px">
-                                    {{$artikel->isi}}
+                                  <p style="font-size: 16px" class="text-justify">
+                                    {!! nl2br($artikel->isi) !!}
                                     <hr style="border-color: white;">
                                   </p>
                                   <footer class="blockquote-footer text-white">Author : {{$artikel->penulis}} <cite title="Source Title">| Rilis : {{$artikel->tanggal}}</cite></footer>
